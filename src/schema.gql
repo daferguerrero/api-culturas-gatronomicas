@@ -1,0 +1,166 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type RecipeEntity {
+  id: String!
+  name: String!
+  description: String!
+  photo: String!
+  preparation: String!
+  video: String!
+  culture: CultureEntity!
+}
+
+type CategoryEntity {
+  id: String!
+  name: String!
+  products: [ProductEntity!]!
+}
+
+type ProductEntity {
+  id: String!
+  name: String!
+  description: String!
+  history: String!
+  culture: CultureEntity!
+}
+
+type CultureEntity {
+  id: String!
+  name: String!
+  description: String!
+  restaurants: [RestaurantEntity!]!
+  recipes: [RecipeEntity!]!
+  products: [ProductEntity!]!
+}
+
+type RestaurantEntity {
+  id: String!
+  name: String!
+  michelinStars: Float!
+  achievementDate: String!
+  culture: CultureEntity!
+  city: CityEntity!
+}
+
+type CityEntity {
+  id: String!
+  name: String!
+  country: CountryEntity!
+  restaurants: [RestaurantEntity!]!
+}
+
+type CountryEntity {
+  id: String!
+  name: String!
+  cities: [CityEntity!]!
+}
+
+type Query {
+  countries: [CountryEntity!]!
+  country(id: String!): CountryEntity!
+  cities: [CityEntity!]!
+  city(id: String!): CityEntity!
+  findCityByCountryIdCityId(countryId: String!, cityId: String!): CityEntity!
+  findCitiesByCountryId(countryId: String!): [CityEntity!]!
+  restaurants: [RestaurantEntity!]!
+  restaurant(id: String!): RestaurantEntity!
+  cultures: [CultureEntity!]!
+  culture(id: String!): CultureEntity!
+  products: [ProductEntity!]!
+  product(id: String!): [ProductEntity!]!
+  findProductByCultureIdAndProductId(cultureId: String!, productId: String!): ProductEntity!
+  findProductsByCultureId(cultureId: String!): [ProductEntity!]!
+  findProductByCategoryIdAndProductId(categoryId: String!, productId: String!): ProductEntity!
+  findProductsByCategoryId(categoryId: String!): [ProductEntity!]!
+  findRestaurantByCultureIdRestaurantId(cultureId: String!, restaurantId: String!): RestaurantEntity!
+  findRestaurantsByCultureId(cultureId: String!): [RestaurantEntity!]!
+  recipes: [RecipeEntity!]!
+  recipe(id: String!): RecipeEntity!
+  findRecipeByCultureIdAndRecipeId(cultureId: String!, recipeId: String!): RecipeEntity!
+  findRecipesByCultureId(cultureId: String!): [RecipeEntity!]!
+  findRestaurantByCityIdAndRestaurantId(cityId: String!, restaurantId: String!): RestaurantEntity!
+  findRestaurantsByCityId(cityId: String!): [RestaurantEntity!]!
+  getAllCategories: [CategoryEntity!]!
+  getCategoryById(id: String!): CategoryEntity!
+}
+
+type Mutation {
+  createCountry(country: CountryDto!): CountryEntity!
+  updateCountry(id: String!, country: CountryDto!): CountryEntity!
+  deleteCountry(id: String!): String!
+  createCity(city: CityDto!): CityEntity!
+  updateCity(id: String!, city: CityDto!): CityEntity!
+  deleteCity(id: String!): String!
+  addCityCountry(countryId: String!, cityId: String!): CountryEntity!
+  associateCitiesCountry(cities: [CityDto!]!, countryId: String!): [CountryEntity!]!
+  deleteCityCountry(countryId: String!, cityId: String!): String!
+  createRestaurant(restaurant: RestaurantDto!): RestaurantEntity!
+  updateRestaurant(id: String!, restaurant: RestaurantDto!): RestaurantEntity!
+  deleteRestaurant(id: String!): String!
+  createCulture(culture: CultureDto!): CultureEntity!
+  updateCulture(id: String!, culture: CultureDto!): CultureEntity!
+  deleteCulture(id: String!): String!
+  createProduct(product: ProductDto!): ProductEntity!
+  updateProduct(id: String!, product: ProductDto!): ProductEntity!
+  deleteProduct(id: String!): String!
+  addProductToCulture(cultureId: String!, productId: String!): CultureEntity!
+  associateProductsToCulture(cultureId: String!, products: [ProductDto!]!): [CultureEntity!]!
+  deleteProductFromCulture(cultureId: String!, productId: String!): String!
+  addProductToCategory(categoryId: String!, productId: String!): CategoryEntity!
+  associateProductsToCategory(categoryId: String!, products: [ProductDto!]!): [CategoryEntity!]!
+  deleteProductFromCategory(categoryId: String!, productId: String!): String!
+  addRestaurantToCulture(cultureId: String!, restaurantId: String!): CultureEntity!
+  associateRestaurantsToCulture(restaurants: [RestaurantDto!]!, cultureId: String!): [CultureEntity!]!
+  deleteRestaurantFromCulture(cultureId: String!, restaurantId: String!): String!
+  createRecipe(recipe: RecipeDto!): RecipeEntity!
+  updateRecipe(id: String!, recipe: RecipeDto!): RecipeEntity!
+  deleteRecipe(id: String!): String!
+  addRecipeToCulture(cultureId: String!, recipeId: String!): CultureEntity!
+  associateRecipesToCulture(recipes: [RecipeDto!]!, cultureId: String!): CultureEntity!
+  deleteRecipeFromCulture(cultureId: String!, recipeId: String!): String!
+  addRestaurantToCity(cityId: String!, restaurantId: String!): CityEntity!
+  associateRestaurantsToCity(recipes: [RestaurantDto!]!, cityId: String!): CityEntity!
+  deleteRestaurantFromCity(cityId: String!, restaurantId: String!): String!
+  createCategory(categoryDto: CategoryDto!): CategoryEntity!
+  updateCategory(id: String!, categoryDto: CategoryDto!): CategoryEntity!
+  deleteCategory(id: String!): String!
+}
+
+input CountryDto {
+  name: String!
+}
+
+input CityDto {
+  name: String!
+}
+
+input RestaurantDto {
+  name: String!
+  michelinStars: Float!
+  achievementDate: String!
+}
+
+input CultureDto {
+  name: String!
+  description: String!
+}
+
+input ProductDto {
+  name: String!
+  description: String!
+  history: String!
+}
+
+input RecipeDto {
+  name: String!
+  description: String!
+  photo: String!
+  preparation: String!
+  video: String!
+}
+
+input CategoryDto {
+  name: String!
+}
